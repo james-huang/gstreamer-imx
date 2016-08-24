@@ -21,7 +21,7 @@ int main()
 }
 """
 def check_compiler_flag(conf, flag, lang):
-	return conf.check(fragment = c_cflag_check_code, mandatory = 0, execute = 0, define_ret = 0, msg = 'Checking for compiler switch %s' % flag, cxxflags = conf.env[lang + 'FLAGS'] + [flag], okmsg = 'yes', errmsg = 'no')  
+	return conf.check(fragment = c_cflag_check_code, mandatory = 0, execute = 0, define_ret = 0, msg = 'Checking for compiler switch %s' % flag, cxxflags = conf.env[lang + 'FLAGS'] + [flag], okmsg = 'yes', errmsg = 'no')
 def check_compiler_flags_2(conf, cflags, ldflags, msg):
 	Logs.pprint('NORMAL', msg)
 	return conf.check(fragment = c_cflag_check_code, mandatory = 0, execute = 0, define_ret = 0, msg = 'Checking if building with these flags works', cxxflags = cflags, ldflags = ldflags, okmsg = 'yes', errmsg = 'no')
@@ -166,7 +166,7 @@ def configure(conf):
 		conf.env['WITH_GSTVIDEO'] = True
 	else:
 		Logs.pprint('RED', 'could not find gstvideo library - not building video plugins')
-	if conf.check_cc(lib = 'gstphotography-1.0', uselib_store = 'GSTPHOTOGRAPHY', mandatory = 0):
+	if conf.check_cc(lib = 'gstphotography-1.0', uselib_store = 'GSTPHOTOGRAPHY', mandatory = 0, libpath = '/opt/openwebrtc-0.3/lib', rpath = '/opt/openwebrtc-0.3/lib'):
 		conf.env['WITH_GSTPHOTOGRAPHY'] = True
 
 
